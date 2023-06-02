@@ -32,10 +32,43 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <a href="<c:url value="/user/list"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate List of Users</a>
           </div>
 
             <!-- Content -->
+<%--          list all users --%>
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th style="text-align: center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+          <c:forEach items="${users}" var="user">
+              <tr>
+                  <td><c:out value="${user.id}"/></td>
+                  <td><c:out value="${user.userName}"/></td>
+                  <td><c:out value="${user.email}"/></td>
+                  <td>
+                        <div class="row">
+                            <div class="col" style="text-align: center">
+                                <a class="btn btn-primary" href='<c:url value="/user/edit?id=${user.id}"/>'>Edit</a>
+                            </div>
+                            <div class="col" style="text-align: center">
+                                <a class="btn btn-primary" href='<c:url value="/user/remove?id=${user.id}"/>'>Delete</a>
+                            </div>
+                            <div class="col" style="text-align: center">
+                                <a class="btn btn-primary" href='<c:url value="/user/view?id=${user.id}"/>'>View</a>
+                            </div>
+                        </div>
+                  </td>
+              </tr>
+          </c:forEach>
+                </tbody>
+                </table>
 
 
 <%--          <!-- Content Row -->--%>
